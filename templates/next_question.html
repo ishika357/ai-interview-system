@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interview Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>AI</span> Interview
+        </div>
+
+        <div class="menu-title">
+            MAIN
+        </div>
+
+        <a href="/" class="nav-item active">
+            🎤
+            <span>Interview</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            📊
+            <span>Analytics</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            📄
+            <span>History</span>
+        </a>
+
+        <div class="menu-title account-title">
+            ACCOUNT
+        </div>
+
+        <a href="#" class="nav-item">
+            ⚙
+            <span>Settings</span>
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>AI Interview</h1>
+
+                <p>
+                    Practice your interview and get AI-powered feedback.
+                </p>
+
+            </div>
+
+            <div class="candidate-badge">
+                👤 Candidate
+            </div>
+
+        </header>
+
+
+
+        <!-- QUESTION -->
+
+        <section class="interview-grid">
+
+
+            <!-- CAMERA -->
+
+            <div class="card camera-card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Interview Camera
+                    </h2>
+
+                    <div class="camera-status">
+
+                        <span
+                            class="status-dot"
+                            id="statusDot">
+                        </span>
+
+                        <span id="cameraStatus">
+                            Camera not started
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-container">
+
+                    <video
+                        id="video"
+                        autoplay
+                        muted>
+                    </video>
+
+
+                    <div
+                        class="camera-placeholder"
+                        id="cameraPlaceholder">
+
+                        <div class="camera-icon">
+                            📷
+                        </div>
+
+                        <p>
+                            Click Start Camera
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="camera-controls">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="startCamera()">
+
+                        Start Camera
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-btn"
+                        onclick="startRecording()">
+
+                        🎤 Start Answer
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="status"
+                    class="recording-status">
+
+                    Camera not started.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUESTION CARD -->
+
+            <div class="card question-card">
+
+                <div class="question-label">
+
+                    QUESTION
+                    {{ question_number or 2 }}
+                    OF
+                    {{ total_questions or 3 }}
+
+                </div>
+
+
+                <h2 class="question-text">
+
+                    {{ question }}
+
+                </h2>
+
+
+                <p class="question-description">
+
+                    Take a moment to understand the question.
+                    When you are ready, start your camera and answer.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    class="primary-btn answer-btn"
+                    onclick="startRecording()">
+
+                    🎤 Start Answer
+
+                </button>
+
+
+                <div class="progress-section">
+
+                    <div class="progress-header">
+
+                        <span>
+                            Interview Progress
+                        </span>
+
+                        <span>
+                            67%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: 67%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SCORE CARDS -->
+
+        <section class="score-grid">
+
+            <div class="score-card">
+
+                <span>
+                    Overall Score
+                </span>
+
+                <strong>
+                    --
+                </strong>
+
+                <small>
+                    Waiting for answer
+                </small>
+
+            </div>
+
+
+            <div class="score-card">
+
+                <span>
+                    Technical
+                </span>
+
+                <strong>
+                    --
+                </strong>
+
+                <small>
+                    Knowledge
+                </small>
+
+            </div>
+
+
+            <div class="score-card">
+
+                <span>
+                    Relevance
+                </span>
+
+                <strong>
+                    --
+                </strong>
+
+                <small>
+                    Answer relevance
+                </small>
+
+            </div>
+
+
+            <div class="score-card">
+
+                <span>
+                    Confidence
+                </span>
+
+                <strong>
+                    --
+                </strong>
+
+                <small>
+                    AI detected
+                </small>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+    startCamera();
+});
+</script>
+
+</body>
+</html>

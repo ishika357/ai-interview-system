@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interview Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body data-question-number="{{ question_number|default(1) }}">
+
+<div class="app">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>AI</span> Interview
+        </div>
+
+
+        <div class="sidebar-title">
+            MAIN
+        </div>
+
+
+        <a href="/" class="sidebar-link active">
+            🎤 Interview
+        </a>
+
+
+        <a href="#" class="sidebar-link">
+            📊 Analytics
+        </a>
+
+
+        <a href="#" class="sidebar-link">
+            📄 History
+        </a>
+
+
+        <div class="sidebar-title account-title">
+            ACCOUNT
+        </div>
+
+
+        <a href="#" class="sidebar-link">
+            ⚙ Settings
+        </a>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <div class="top-bar">
+
+            <div>
+
+                <h1>
+                    AI Interview Analyzer
+                </h1>
+
+                <p>
+                    Practice interviews with AI-powered evaluation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION -->
+
+        <section class="interview-card">
+
+
+            <!-- QUESTION PROGRESS -->
+
+            <div class="question-progress">
+
+                Question {{ question_number }}
+                of {{ total_questions }}
+
+            </div>
+
+
+            <span class="section-label">
+                INTERVIEW QUESTION
+            </span>
+
+
+            <h2>
+                {{ question }}
+            </h2>
+
+
+
+            <!-- CAMERA -->
+
+            <div class="video-container">
+
+                <video
+                    id="video"
+                    autoplay
+                    muted
+                    playsinline>
+                </video>
+
+
+                <!-- CAMERA PLACEHOLDER -->
+
+                <div
+                    id="cameraPlaceholder"
+                    class="camera-placeholder">
+
+                    <div class="camera-placeholder-icon">
+                        📷
+                    </div>
+
+                    <p>
+                        Camera not started
+                    </p>
+
+                    <small>
+                        Click "Start Camera" to begin
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAMERA STATUS -->
+
+            <div class="camera-status">
+
+                <span
+                    id="statusDot"
+                    class="status-dot">
+                </span>
+
+
+                <span id="cameraStatus">
+                    Camera not started
+                </span>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="controls">
+
+
+                <button
+                    type="button"
+                    onclick="startCamera()"
+                    class="secondary-btn">
+
+                    📷 Start Camera
+
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="startRecording()"
+                    class="primary-btn">
+
+                    🎙 Start Answer
+
+                </button>
+
+            </div>
+
+
+
+            <!-- RECORDING STATUS -->
+
+            <div
+                id="status"
+                class="recording-status">
+
+                Camera not started
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- INFORMATION CARDS -->
+
+        <section class="features">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎤
+                </div>
+
+                <h3>
+                    Voice Interview
+                </h3>
+
+                <p>
+                    Answer the interview question
+                    using your microphone.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Evaluation
+                </h3>
+
+                <p>
+                    Your answer is transcribed and
+                    evaluated automatically.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Performance Report
+                </h3>
+
+                <p>
+                    Get your score, feedback and
+                    interview result.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+</main>
+
+</div>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    /*
+       Store the question number safely
+       in the HTML body.
+
+       JavaScript will read this value
+       from document.body.dataset.
+    */
+
+    const questionNumber =
+        document.body.dataset.questionNumber || "1";
+
+
+    window.currentQuestionNumber =
+        parseInt(questionNumber);
+
+
+    console.log(
+        "Current question:",
+        window.currentQuestionNumber
+    );
+
+</script>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+
+</body>
+
+</html>

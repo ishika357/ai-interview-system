@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interview Report</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>AI</span> Interview
+        </div>
+
+
+        <div class="menu-title">
+            MAIN
+        </div>
+
+
+        <a href="/" class="nav-item">
+            🎤
+            <span>Interview</span>
+        </a>
+
+
+        <a href="#" class="nav-item active">
+            📊
+            <span>Analytics</span>
+        </a>
+
+
+        <a href="#" class="nav-item">
+            📄
+            <span>History</span>
+        </a>
+
+
+        <div class="menu-title account-title">
+            ACCOUNT
+        </div>
+
+
+        <a href="#" class="nav-item">
+            ⚙
+            <span>Settings</span>
+        </a>
+
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>Interview Report</h1>
+
+                <p>
+                    AI-powered analysis of your interview performance.
+                </p>
+
+            </div>
+
+
+            <a href="/"
+               class="candidate-badge new-interview-link">
+
+                + New Interview
+
+            </a>
+
+        </header>
+
+
+
+        <!-- RESULT BANNER -->
+
+        <div class="result-banner
+            {% if result_status == 'PASS' %}
+                result-pass
+            {% elif result_status == 'AVERAGE' %}
+                result-average
+            {% else %}
+                result-fail
+            {% endif %}">
+
+            <div>
+
+                <span class="result-label">
+                    FINAL RESULT
+                </span>
+
+                <h2>
+                    {{ result_status }}
+                </h2>
+
+            </div>
+
+
+            <div class="result-message">
+
+                {% if result_status == "PASS" %}
+
+                    Excellent performance! Keep it up.
+
+                {% elif result_status == "AVERAGE" %}
+
+                    Good attempt. There is room for improvement.
+
+                {% else %}
+
+                    Keep practicing and improve your technical answers.
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SCORE CARDS -->
+
+        <section class="score-grid">
+
+
+            <div class="score-card report-score">
+
+                <span>
+                    Overall Score
+                </span>
+
+                <strong>
+                    {{ score }}
+                </strong>
+
+                <small>
+                    AI Evaluation
+                </small>
+
+            </div>
+
+
+            <div class="score-card">
+
+                <span>
+                    Emotion
+                </span>
+
+                <strong class="emotion-value">
+                    {{ emotion }}
+                </strong>
+
+                <small>
+                    Facial analysis
+                </small>
+
+            </div>
+
+
+            <div class="score-card">
+
+                <span>
+                    Interview Status
+                </span>
+
+                <strong>
+                    {{ result_status }}
+                </strong>
+
+                <small>
+                    Performance result
+                </small>
+
+            </div>
+
+
+            <div class="score-card">
+
+                <span>
+                    Questions
+                </span>
+
+                <strong>
+                    3
+                </strong>
+
+                <small>
+                    Interview session
+                </small>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ANALYSIS -->
+
+        <section class="report-grid">
+
+
+            <!-- FEEDBACK -->
+
+            <div class="report-card">
+
+                <div class="report-card-header">
+
+                    <h2>
+                        AI Feedback
+                    </h2>
+
+                    <span class="ai-badge">
+                        AI
+                    </span>
+
+                </div>
+
+
+                <div class="feedback-box">
+
+                    <div class="feedback-icon">
+                        💡
+                    </div>
+
+
+                    <p>
+                        {{ feedback }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SCORE VISUAL -->
+
+            <div class="report-card">
+
+                <div class="report-card-header">
+
+                    <h2>
+                        Performance
+                    </h2>
+
+                </div>
+
+
+                <div class="performance-item">
+
+                    <div class="performance-header">
+
+                        <span>
+                            Overall Performance
+                        </span>
+
+                        <span>
+                            {{ score }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="performance-bar">
+
+                        <div class="performance-fill"
+                             style="width: {{ score|float }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="performance-item">
+
+                    <div class="performance-header">
+
+                        <span>
+                            Technical Knowledge
+                        </span>
+
+                        <span>
+                            AI Analysis
+                        </span>
+
+                    </div>
+
+
+                    <div class="performance-bar">
+
+                        <div class="performance-fill"
+                             style="width: 45%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="performance-item">
+
+                    <div class="performance-header">
+
+                        <span>
+                            Communication
+                        </span>
+
+                        <span>
+                            AI Analysis
+                        </span>
+
+                    </div>
+
+
+                    <div class="performance-bar">
+
+                        <div class="performance-fill"
+                             style="width: 55%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CANDIDATE ANSWER -->
+
+        <section class="report-card answer-card">
+
+            <div class="report-card-header">
+
+                <h2>
+                    Candidate Answer
+                </h2>
+
+            </div>
+
+
+            <div class="answer-box">
+
+                {% if candidate_answer %}
+
+                    {{ candidate_answer }}
+
+                {% else %}
+
+                    No answer available.
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="report-actions">
+
+            <a href="/"
+               class="primary-btn">
+
+                🎤 Start New Interview
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
